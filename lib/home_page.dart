@@ -1,5 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_web/admins.dart';
+import 'package:flutter_web/dash_Board.dart';
+import 'package:flutter_web/favorites.dart';
 import 'package:flutter_web/login_page.dart';
 
 class Main extends StatefulWidget {
@@ -10,21 +13,37 @@ class Main extends StatefulWidget {
 }
 
 class _MainState extends State<Main> {
+  Widget NavPages(){
+      switch(_selectedIndex){
+        case 0: 
+        return DashBoard();
+        case 1:
+        return AdminsPage();
+        case 2:
+        return FavoritesPage();
+        default:
+        return DashBoard();
+      }
+    }
+  
   int _selectedIndex = 0;
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
-      
-     
+      key: scaffoldKey,
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          color: Colors.black,
-          onPressed: () {
-            Scaffold.of(context).openEndDrawer();
-          },
-          tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+        automaticallyImplyLeading: false,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 16.5),
+          child: IconButton(
+            icon: const Icon(Icons.menu),
+            color: Colors.black,
+            onPressed: () {
+              scaffoldKey.currentState!.openDrawer();
+            },
+            tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+          ),
         ),
         actions: [
           Padding(
@@ -61,16 +80,16 @@ class _MainState extends State<Main> {
                         ));
               },
               child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 5),
+                children: const [
+                   Padding(
+                    padding: EdgeInsets.only(right: 5),
                     child: Icon(
                       Icons.supervised_user_circle_rounded,
                       size: 30,
                       color: Colors.black,
                     ),
                   ),
-                  Text(
+                   Text(
                     "ADMIN 123",
                     style: TextStyle(color: Colors.black),
                   )
@@ -84,18 +103,19 @@ class _MainState extends State<Main> {
           "Admin Panel",
           style: TextStyle(color: Colors.black),
         ),
-        backgroundColor: Color.fromARGB(255, 237, 237, 248),
+        backgroundColor: const Color.fromARGB(255, 237, 237, 248),
       ),
-       drawer: Drawer(
-        backgroundColor: Colors.black,
+      drawer: Drawer(
+        backgroundColor: const Color.fromARGB(255, 237, 237, 248),
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
+            const SizedBox(
+              height: 0,
+              child: DrawerHeader(
+                decoration: BoxDecoration(color: Colors.black),
+                child: Text('Drawer Header'),
               ),
-              child: Text('Drawer Header'),
             ),
             ListTile(
               title: const Text('Item 1'),
@@ -114,6 +134,7 @@ class _MainState extends State<Main> {
       ),
       body: Row(
         children: [
+          if(MediaQuery.of(context).size.width>=840)
           NavigationRail(
               onDestinationSelected: (int index) {
                 setState(() {
@@ -124,24 +145,27 @@ class _MainState extends State<Main> {
               labelType: NavigationRailLabelType.none,
               destinations: const <NavigationRailDestination>[
                 NavigationRailDestination(
-                  icon: Icon(Icons.favorite_border),
-                  selectedIcon: Icon(Icons.favorite),
-                  label: Text('First'),
+                  icon: Icon(Icons.home),
+                  selectedIcon: Icon(Icons.home_filled),
+                  label: Text('Home'),
                 ),
                 NavigationRailDestination(
-                  icon: Icon(Icons.bookmark_border),
-                  selectedIcon: Icon(Icons.book),
-                  label: Text('Second'),
+                  icon: Icon(Icons.admin_panel_settings_outlined),
+                  selectedIcon: Icon(Icons.admin_panel_settings),
+                  label: Text('Forms'),
                 ),
                 NavigationRailDestination(
                   icon: Icon(Icons.star_border),
                   selectedIcon: Icon(Icons.star),
-                  label: Text('Third'),
+                  label: Text('Favorite'),
                 ),
               ],
-              selectedIndex: _selectedIndex)
+              selectedIndex: _selectedIndex),
+              const VerticalDivider(thickness: 1, width: 2),
+              Expanded(child: NavPages()),
         ],
       ),
     );
+    
   }
 }

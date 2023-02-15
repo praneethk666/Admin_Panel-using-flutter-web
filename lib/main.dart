@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: FirebaseAuth.instance.currentUser == null?MyHomePage():Main()
+      home: FirebaseAuth.instance.currentUser == null?const MyHomePage():const Main()
     );
   }
 }
