@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_web/home_page.dart';
+import 'package:flutter_web/pages/home_page.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -25,7 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
           color: Colors.black87,
         ),
       ),
-      backgroundColor: Colors.red,
+      backgroundColor:  Color(0xFF9C27B0),
       duration: Duration(seconds: 2),
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
             color: Colors.black87,
           ),
         ),
-        backgroundColor: Colors.red,
+        backgroundColor: const Color(0xFF9C27B0),
         duration: const Duration(seconds: 5),
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -73,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: Colors.black87,
               ),
             ),
-            backgroundColor: Colors.red,
+            backgroundColor:  Color(0xFF9C27B0),
             duration: Duration(seconds: 4),
           );
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -138,8 +138,9 @@ class _MyHomePageState extends State<MyHomePage> {
                             allowLogin();
                           },
                           style: ElevatedButton.styleFrom(
-                              elevation: 5, primary: const Color(0xFF9C27B0)),
-                          child: const Text("SIGN IN")))
+                              elevation: 5, backgroundColor: const Color.fromARGB(255, 229, 193, 235)),
+                          child: const Text("SIGN IN",style: TextStyle(color: Colors.white
+                          ),)))
                 ],
               )),
         ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_web/admin_model.dart';
+import 'package:flutter_web/models/admin_model.dart';
 
 class AdminsPage extends StatefulWidget {
   const AdminsPage({Key? key}) : super(key: key);
@@ -12,7 +12,7 @@ class AdminsPage extends StatefulWidget {
 
 class _AdminsPageState extends State<AdminsPage> {
   AdminModel? _adminModel;
-  List<AdminModel> _Admins = List.empty(growable: true);
+  List<AdminModel> _Admins = List.empty(growable: true); // = []
   final _formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController firstNameController = TextEditingController();
@@ -27,19 +27,21 @@ class _AdminsPageState extends State<AdminsPage> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 20, bottom: 5),
+            padding: const EdgeInsets.only(
+              top: 10,
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
                   "ADMINS",
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 10),
+            padding: const EdgeInsets.all(8.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -192,6 +194,8 @@ class _AdminsPageState extends State<AdminsPage> {
           ),
           //Divider(thickness: 1,color: Colors.black,),
           Container(
+            padding: EdgeInsets.symmetric(horizontal: 50),
+            //margin: EdgeInsets.all(20),
             color: Colors.black,
             child: ListTile(
               title: Row(
@@ -465,7 +469,7 @@ class _AdminsPageState extends State<AdminsPage> {
                                                                                   firstNameController.text = "";
                                                                                   lastNameController.text = "";
                                                                                   emailController.text = "";
-                                                                                  
+
                                                                                   phoneController.text = "";
                                                                                 });
                                                                               }

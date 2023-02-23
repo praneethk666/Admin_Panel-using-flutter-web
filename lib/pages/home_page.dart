@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_web/admins.dart';
+import 'package:flutter_web/pages/admins.dart';
 import 'package:flutter_web/dash_Board.dart';
-import 'package:flutter_web/favorites.dart';
-import 'package:flutter_web/login_page.dart';
+import 'package:flutter_web/pages/favorites.dart';
+import 'package:flutter_web/pages/login_page.dart';
 
 class Main extends StatefulWidget {
   const Main({Key? key}) : super(key: key);
